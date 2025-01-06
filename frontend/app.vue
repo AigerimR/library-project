@@ -1,5 +1,8 @@
 <template>
-  <v-app>
+  <NuxtLayout>
     <NuxtPage/>
-  </v-app>
+  </NuxtLayout>
+  <LoginModal />
+  <SignupModal />
+  <LogoutModal />
 </template>

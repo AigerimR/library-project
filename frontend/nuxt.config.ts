@@ -2,6 +2,7 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+  // ssr: true,
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   build: {
@@ -22,8 +23,29 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+          @import "~/styles/variables.scss";
+          @import "~/styles/functions.scss";`,
+          api: 'modern-compiler'
+        },
+      },
+    },
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://strapi:1337/api' || 'http://localhost:1337/api',
+    },
   },
   components: [
+    { path: '~/components', pathPrefix: false },
     { path: '~/components/buttons', pathPrefix: false },
+    { path: '~/components/forms', pathPrefix: false },
+    { path: '~/components/modals', pathPrefix: false },
   ],
+  css: [
+      '~/styles/global.scss'
+  ]
 })

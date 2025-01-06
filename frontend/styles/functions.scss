@@ -1,0 +1,5 @@
+$default: 16px;
+
+@function size($size-in-px) {
+  @return calc($size-in-px / $default * 1rem);
+}

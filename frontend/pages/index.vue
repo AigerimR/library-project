@@ -1,28 +1,47 @@
 <template>
-  <div class="d-lg-flex justify-end">
-    <BtnMain :text="'Login'" class="ma-2"></BtnMain>
-    <BtnMain :text="'Sign Up'" :type="'reverse'" class="ma-2"></BtnMain>
-<!--    <p class="text-h2">{{ page.title}}</p>-->
-<!--    <p class="text-h4">{{ page.subtitle}}</p>-->
+  <div class="main-section">
+    <v-container>
+      <div v-if="title">
+        <p class="text-h2">{{ title }}</p>
+        <p class="text-h4">{{ subtitle }}</p>
+      </div>
+      <p v-else>Loading SSR content...</p>
+    </v-container>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+//taking page content from cashed data - if not fetch it
+const data = useState('pageStaticContent', () => null);
 
-let page = ref({});
+if(!data.value) {
+  const config = useRuntimeConfig();
+  const baseURL = config.public.apiBase;
 
-onMounted(async () => {
-  const { data, error} = await useFetch('http://localhost:1337/api/main-page');
-  // page.value = data?.value?.data;
-  console.log(data);
-
-  if (error.value) {
-    console.error('Error fetching data:', error.value);
-  } else {
-    page.value = data.value;
-    console.log(page.value);
+  const { data: fetchedData, error} = await useAsyncData('pageStaticContent', () =>
+          $fetch(`${baseURL}/main-page`),
+      {
+        credentials: 'include',
+        server: true,
+        initialCache: true,
+      }
+  );
+  if(error.value) {
+    console.log(error);
   }
-})
+  data.value = fetchedData;
+}
 
+const title = computed(() => data.value?.data?.title);
+const subtitle = computed(() => data.value?.data?.subtitle);
 </script>
+
+<style scoped>
+  .main-section {
+    height: 100vh;
+    background: url('/images/main.jpg') center/cover;
+    padding: 80px 0;
+    color: white;
+    font-weight: 600;
+  }
+</style>
