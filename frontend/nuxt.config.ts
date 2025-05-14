@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     { path: '~/components/buttons', pathPrefix: false },
     { path: '~/components/forms', pathPrefix: false },
     { path: '~/components/modals', pathPrefix: false },
+    { path: '~/components/cards', pathPrefix: false },
   ],
   css: [
       '~/styles/global.scss'

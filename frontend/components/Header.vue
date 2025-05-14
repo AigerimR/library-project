@@ -8,26 +8,24 @@
             @click="navigateTo('/')" />
       </div>
       <div class="d-flex justify-end">
-        <MainBtn
+        <PlainBtn
             v-if="!userLoggedIn"
             :text="'Log In'"
             class="ma-2"
             @click="openLoginModal" />
-        <MainBtn
+        <PlainBtn
             v-if="!userLoggedIn"
             :text="'Sign Up'"
-            :type="'reverse'"
             class="ma-2"
             @click="openSignupModal" />
-        <MainBtn
+        <PlainBtn
             v-if="userLoggedIn"
             :text="'Log Out'"
             class="ma-2"
             @click="openLogoutModal" />
-        <MainBtn
+        <PlainBtn
             v-if="userLoggedIn"
             :text="'Account'"
-            :type="'reverse'"
             class="ma-2"
             @click="navigateTo('/account')" />
       </div>
@@ -63,6 +61,6 @@ const openSignupModal = () => {
     width: 100%;
     background: transparent;
     z-index: 100;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0))
+    background: rgba(255, 255, 255, 0.3);
   }
 </style>

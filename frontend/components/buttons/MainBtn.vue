@@ -17,6 +17,9 @@
   .v-btn {
     background: $orange;
     color: white;
+    &__overlay {
+      background: transparent;
+    }
     &:hover {
       background: white;
       color: black;

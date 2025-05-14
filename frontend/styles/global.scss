@@ -35,7 +35,9 @@ html {
   }
 }
 
-
+.v-container {
+  padding: 0 16px!important;
+}
 @media (min-width: 960px) {
   .v-container {
     max-width: unset!important;

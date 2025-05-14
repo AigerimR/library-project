@@ -11,6 +11,8 @@
             @click="logout"
         ></v-btn>
         <v-btn
+            class="modal-close-btn"
+
             text="Close"
             variant="text"
             @click="closeModal"

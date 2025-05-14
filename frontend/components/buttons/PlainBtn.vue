@@ -1,6 +1,7 @@
 <template>
   <v-btn
-      variant="text"
+      variant="plain"
+      :ripple="false"
       :text="text"
       :class="type"/>
 </template>
@@ -11,15 +12,13 @@ defineProps({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
  .v-btn {
    font-weight: 600;
-   color: white;
    padding: 0;
-   margin: 0!important;
+   min-width: fit-content;
    &:hover {
-     background: transparent;
-     color: #fb8500;
+     color: $orange;
    }
  }
 </style>
